@@ -1,0 +1,6 @@
+{
+  "name": "Mi Presupuesto Mensual",
+  "description": "Dashboard financiero personal para el seguimiento del presupuesto mensual, gastos diarios y saldo disponible.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
