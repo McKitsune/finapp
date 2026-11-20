@@ -4,13 +4,15 @@
  */
 
 import React, { useState } from 'react';
-import { X, Settings, RotateCcw, Database, ShieldCheck, Check } from 'lucide-react';
+import { X, Settings, RotateCcw, Database, ShieldCheck, Check, Download, Upload } from 'lucide-react';
 
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
   movementCount: number;
   onResetDemoData: () => void;
+  onExportBackup: () => void;
+  onImportBackup: (file: File) => Promise<void>;
 }
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -18,8 +20,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onClose,
   movementCount,
   onResetDemoData,
+  onExportBackup,
+  onImportBackup,
 }) => {
   const [resetDone, setResetDone] = useState<boolean>(false);
+  const [backupLoading, setBackupLoading] = useState(false);
 
   if (!isOpen) return null;
 
@@ -86,6 +91,16 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <span>
               Este almacenamiento es para pruebas en este dispositivo. No está conectado a un servidor remoto ni expone credenciales privadas.
             </span>
+          </div>
+
+          <div className="p-4 rounded-2xl border border-slate-200 space-y-3">
+            <p className="text-sm font-extrabold">Copias de seguridad</p>
+            <p className="text-xs text-slate-500">Exporta tus movimientos, presupuestos y bolsillos a un archivo JSON. Guarda el archivo en un lugar privado.</p>
+            <button type="button" onClick={onExportBackup} className="w-full py-2.5 rounded-xl bg-[#16171B] text-[#E2FE52] font-bold text-xs inline-flex justify-center items-center gap-2"><Download size={15}/> Descargar copia de seguridad</button>
+            <label className="w-full py-2.5 rounded-xl bg-[#F0F2F2] font-bold text-xs inline-flex justify-center items-center gap-2 cursor-pointer"><Upload size={15}/> {backupLoading ? 'Importando...' : 'Importar copia de seguridad'}
+              <input type="file" accept="application/json,.json" className="sr-only" disabled={backupLoading} onChange={async e=>{const f=e.target.files?.[0]; e.target.value=''; if(f){setBackupLoading(true);try{await onImportBackup(f);}finally{setBackupLoading(false);}}}}/>
+            </label>
+            <p className="text-[11px] text-amber-700">Importar sustituye los datos actuales después de pedir confirmación. No existe sincronización automática con la nube.</p>
           </div>
 
           {/* Opción de restablecer */}

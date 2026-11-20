@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import type { ReceiptDetail } from './receipts.types';
+
 export type MovementType = 'expense' | 'income';
 
 export type ExpenseCategory =
@@ -36,6 +38,7 @@ export interface FinanceMovement {
   amountCOP: number;
   notes?: string;
   paymentMethod?: string; // Para ingresos (ej. Transferencia, Efectivo)
+  receipt?: ReceiptDetail; // Detalle opcional de factura, sin duplicar el gasto.
   createdAt: number; // Timestamp para desempates cronológicos
 }
 
@@ -43,6 +46,7 @@ export interface FinanceMovement {
 export type ExpenseItem = FinanceMovement;
 
 export interface NewExpenseFormData {
+  receipt?: ReceiptDetail;
   amountCOP: number;
   description: string;
   category: ExpenseCategory;

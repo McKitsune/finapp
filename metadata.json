@@ -1,6 +1,11 @@
 {
   "name": "Mi Presupuesto Mensual",
-  "description": "Dashboard financiero personal para el seguimiento del presupuesto mensual, gastos diarios y saldo disponible.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "description": "Aplicación financiera personal con presupuestos, bolsillos de ahorro, digitalización de facturas y asistente Gemini por texto y voz.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

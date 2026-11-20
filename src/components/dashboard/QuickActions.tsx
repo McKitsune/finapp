@@ -4,16 +4,18 @@
  */
 
 import React from 'react';
-import { Plus, TrendingUp, TrendingDown } from 'lucide-react';
+import { Plus, TrendingUp, TrendingDown, ScanLine } from 'lucide-react';
 
 interface QuickActionsProps {
   onOpenNewIncome: () => void;
   onOpenNewExpense: () => void;
+  onOpenReceipt: () => void;
 }
 
 export const QuickActions: React.FC<QuickActionsProps> = ({
   onOpenNewIncome,
   onOpenNewExpense,
+  onOpenReceipt,
 }) => {
   return (
     <section aria-label="Acciones rápidas" className="mb-6">
@@ -40,6 +42,10 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
             <TrendingDown className="w-3.5 h-3.5 stroke-[2.5]" aria-hidden="true" />
           </div>
           <span>+ Registrar gasto</span>
+        </button>
+        <button type="button" onClick={onOpenReceipt}
+          className="flex-1 h-12 inline-flex items-center justify-center gap-2.5 px-6 rounded-2xl bg-white hover:bg-[#F9FDEA] text-[#16171B] border border-slate-200 font-extrabold text-sm shadow-xs transition-all focus:outline-none focus:ring-2 focus:ring-[#E2FE52]">
+          <ScanLine className="w-5 h-5" aria-hidden="true" /> <span>Escanear factura</span>
         </button>
       </div>
     </section>

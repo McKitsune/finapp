@@ -193,6 +193,23 @@ export const MovementDetailModal: React.FC<MovementDetailModalProps> = ({
             </span>
           </div>
 
+          {/* Información de facturas digitalizadas; no se crea un gasto por producto. */}
+          {item.receipt && <section className="rounded-2xl border border-slate-200 bg-[#F8FAFA] p-4 space-y-3">
+            <div className="flex items-center gap-2 font-extrabold text-sm"><FileText size={18}/> Detalle de factura digitalizada</div>
+            <div className="text-xs text-slate-600 space-y-1">
+              {item.receipt.invoiceNumber && <p>Factura: <b>{item.receipt.invoiceNumber}</b></p>}
+              {item.receipt.taxId && <p>NIT: <b>{item.receipt.taxId}</b></p>}
+              {item.receipt.paymentMethod && <p>Medio: {item.receipt.paymentMethod}</p>}
+            </div>
+            {item.receipt.items.length > 0 && <div className="max-h-56 overflow-auto space-y-2">
+              {item.receipt.items.map((p, i) => <div key={i} className="flex items-start justify-between gap-2 text-xs border-b border-slate-200 pb-2">
+                <span>{p.description} <span className="text-slate-500">× {p.quantity}</span></span>
+                <span className="font-bold whitespace-nowrap">{formatCurrencyCOP(p.lineTotal)}</span>
+              </div>)}
+            </div>}
+            <p className="text-xs font-extrabold">Total de factura: {formatCurrencyCOP(item.receipt.totalCOP)}</p>
+          </section>}
+
           {/* Información estructurada */}
           <div className="space-y-3.5 text-xs sm:text-sm">
             {/* Tipo */}

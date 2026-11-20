@@ -21,13 +21,13 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         {/* Título principal con resaltador lima en 'Mensual' y subtítulo */}
         <div>
           <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold tracking-tight text-[#16171B] leading-tight flex items-center flex-wrap gap-2">
-            <span>Mi Presupuesto</span>
+            <span>FINAPP</span>
             <span className="bg-[#E2FE52] text-[#16171B] px-3.5 py-0.5 rounded-full inline-block font-extrabold">
               Mensual
             </span>
           </h1>
           <p className="mt-2 text-sm sm:text-base text-[#6E737B] font-normal">
-            Controla tus gastos del mes y mantén tus finanzas en orden.
+            Mi app para el control y ahorro de gastos.
           </p>
         </div>
 

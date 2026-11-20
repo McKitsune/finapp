@@ -145,11 +145,9 @@ export function formatDateToSpanish(dateInput: Date | string): string {
  * Obtiene la fecha actual en formato ISO "YYYY-MM-DD".
  */
 export function getTodayISODate(): string {
-  const now = new Date();
-  const y = now.getFullYear();
-  const m = (now.getMonth() + 1).toString().padStart(2, '0');
-  const d = now.getDate().toString().padStart(2, '0');
-  return `${y}-${m}-${d}`;
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Bogota', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(new Date());
 }
 
 /**
